@@ -15,7 +15,7 @@ const app = express();
 require("dotenv").config();
 
 app.use(session({
-    secret: "collageP",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
 }));
@@ -673,7 +673,9 @@ app.get("/admin/dashboard", async (req, res) => {
         totalNotifaction
     });
 });
-
+app.get("/",(req,res) => {
+    res.redirect("/register");
+});
 
 // Server
 const PORT = process.env.PORT || 8080;

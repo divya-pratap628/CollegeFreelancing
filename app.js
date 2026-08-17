@@ -675,7 +675,7 @@ app.get("/admin/dashboard", async (req, res) => {
 });
 
 app.get("/",(req,res) => {
-    res.render("users/home");
+    res.render("home");
 });
 
 // Server

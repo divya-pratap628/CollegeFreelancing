@@ -10,8 +10,9 @@ const multer = require("multer");
 const Application = require("./models/application");
 const Notification = require("./models/notification");
 const session = require("express-session");
+const app = express();
 
-const app = express(); 
+require("dotenv").config();
 
 app.use(session({
     secret: "collageP",
@@ -29,7 +30,7 @@ main()
     });
 
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/collegeFreelancing");
+    await mongoose.connect(process.env.MONGO_URI);
 }
 
 // Express Configuration

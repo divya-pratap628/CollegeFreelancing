@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notifications | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="notifications-container">
+
+        <!-- Page Header -->
+
+        <section class="page-header">
+
+            <div>
+
+                <p class="small-title">
+                    UPDATES
+                </p>
+
+                <h1>
+                    Notifications 🔔
+                </h1>
+
+                <p>
+                    Stay updated with your tasks and applications.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Notifications -->
+
+        <% if (notifications.length === 0) { %>
+
+            <section class="empty-state">
+
+                <div class="empty-icon">
+                    🔔
+                </div>
+
+                <h2>
+                    No Notifications Yet
+                </h2>
+
+                <p>
+                    You're all caught up!
+                </p>
+
+            </section>
+
+
+        <% } else { %>
+
+
+            <section class="notification-list">
+
+                <% notifications.forEach((notification) => { %>
+
+                    <article class="notification-card
+                        <%= notification.isRead ? 'read' : 'unread' %>"
+                    >
+
+                        <!-- Icon -->
+
+                        <div class="notification-icon">
+
+                            <% if (notification.isRead) { %>
+
+                                ✓
+
+                            <% } else { %>
+
+                                🔔
+
+                            <% } %>
+
+                        </div>
+
+
+                        <!-- Content -->
+
+                        <div class="notification-content">
+
+                            <div class="notification-header">
+
+                                <h2>
+                                    Notification
+                                </h2>
+
+
+                                <% if (notification.isRead) { %>
+
+                                    <span class="notification-status read-status">
+                                        Read
+                                    </span>
+
+                                <% } else { %>
+
+                                    <span class="notification-status unread-status">
+                                        New
+                                    </span>
+
+                                <% } %>
+
+                            </div>
+
+
+                            <p class="notification-message">
+                                <%= notification.message %>
+                            </p>
+
+
+                            <div class="notification-footer">
+
+                                <span class="notification-date">
+
+                                    <% if (notification.createdAt) { %>
+
+                                        📅
+                                        <%= new Date(notification.createdAt).toLocaleDateString() %>
+
+                                    <% } else { %>
+
+                                        📅 No Date
+
+                                    <% } %>
+
+                                </span>
+
+
+                                <% if (notification.task) { %>
+
+                                    <a
+                                        href="/tasks/<%= notification.task %>/submissions"
+                                        class="notification-btn"
+                                    >
+                                        View Submission →
+                                    </a>
+
+                                <% } %>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                <% }) %>
+
+            </section>
+
+        <% } %>
+
+
+        <!-- Back -->
+
+        <div class="notification-back">
+
+            <a
+                href="/dashboard"
+                class="secondary-btn"
+            >
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

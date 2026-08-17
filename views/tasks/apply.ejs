@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply for Task | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="apply-container">
+
+        <!-- Back -->
+        <a
+            href="/tasks/<%= task._id %>"
+            class="back-link"
+        >
+            ← Back to Task
+        </a>
+
+
+        <!-- Apply Card -->
+        <section class="apply-card">
+
+            <!-- Header -->
+
+            <div class="apply-header">
+
+                <p class="small-title">
+                    TASK APPLICATION
+                </p>
+
+                <h1>
+                    Apply for this Task 🚀
+                </h1>
+
+                <p>
+                    Send your proposal to the client and explain
+                    why you are the right person for this project.
+                </p>
+
+            </div>
+
+
+            <!-- Task Summary -->
+
+            <div class="apply-task-summary">
+
+                <div>
+
+                    <span>
+                        Task
+                    </span>
+
+                    <strong>
+                        <%= task.title %>
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Budget
+                    </span>
+
+                    <strong>
+                        ₹<%= task.budget %>
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Category
+                    </span>
+
+                    <strong>
+                        <%= task.category %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Application Form -->
+
+            <form
+                action="/tasks/<%= task._id %>/apply"
+                method="POST"
+                class="application-form"
+            >
+
+                <!-- Message -->
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Your Proposal
+                    </label>
+
+                    <p class="form-help">
+                        Tell the client about your skills and
+                        how you will complete the task.
+                    </p>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="7"
+                        placeholder="Example: I have experience with C++, web development..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Completion Time -->
+
+                <div class="form-group">
+
+                    <label for="completionTime">
+                        Completion Time
+                    </label>
+
+                    <input
+                        type="text"
+                        id="completionTime"
+                        name="completionTime"
+                        placeholder="Example: 3 days"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Bid Amount -->
+
+                <div class="form-group">
+
+                    <label for="bidAmount">
+                        Your Bid Amount (₹)
+                    </label>
+
+                    <p class="form-help">
+                        Client's budget: ₹<%= task.budget %>
+                    </p>
+
+                    <input
+                        type="number"
+                        id="bidAmount"
+                        name="bidAmount"
+                        placeholder="Example: 500"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <div class="application-actions">
+
+                    <a
+                        href="/tasks/<%= task._id %>"
+                        class="cancel-btn"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="submit-application-btn"
+                    >
+                        Submit Application →
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

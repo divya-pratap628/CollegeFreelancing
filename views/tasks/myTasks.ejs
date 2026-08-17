@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Tasks | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="my-tasks-container">
+
+        <!-- Header -->
+
+        <section class="page-header">
+
+            <div>
+
+                <p class="small-title">
+                    WORKSPACE
+                </p>
+
+                <h1>
+                    My Posted Tasks 📋
+                </h1>
+
+                <p>
+                    Manage all the projects you have posted.
+                </p>
+
+            </div>
+
+
+            <a href="/postTask" class="primary-btn">
+                + Post New Task
+            </a>
+
+        </section>
+
+
+        <!-- Tasks -->
+
+        <% if (tasks.length === 0) { %>
+
+            <section class="empty-state">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <h2>
+                    No Tasks Posted Yet
+                </h2>
+
+                <p>
+                    You haven't posted any tasks yet.
+                </p>
+
+                <a href="/postTask" class="primary-btn">
+                    Post Your First Task
+                </a>
+
+            </section>
+
+
+        <% } else { %>
+
+
+            <section class="my-task-grid">
+
+                <% tasks.forEach((task) => { %>
+
+                    <article class="my-task-card">
+
+                        <!-- Top -->
+
+                        <div class="my-task-top">
+
+                            <span class="category">
+                                <%= task.category %>
+                            </span>
+
+
+                            <% if (task.status === "Open") { %>
+
+                                <span class="status open">
+                                    ● Open
+                                </span>
+
+                            <% } else if (task.status === "Assigned") { %>
+
+                                <span class="status assigned">
+                                    ● Assigned
+                                </span>
+
+                            <% } else if (task.status === "Completed") { %>
+
+                                <span class="status completed">
+                                    ● Completed
+                                </span>
+
+                            <% } else { %>
+
+                                <span class="status cancelled">
+                                    ● <%= task.status %>
+                                </span>
+
+                            <% } %>
+
+                        </div>
+
+
+                        <!-- Title -->
+
+                        <h2 class="my-task-title">
+                            <%= task.title %>
+                        </h2>
+
+
+                        <!-- Description -->
+
+                        <p class="my-task-description">
+
+                            <% if (task.description.length > 120) { %>
+
+                                <%= task.description.substring(0, 120) %>...
+
+                            <% } else { %>
+
+                                <%= task.description %>
+
+                            <% } %>
+
+                        </p>
+
+
+                        <!-- Task Information -->
+
+                        <div class="my-task-info">
+
+                            <div>
+
+                                <span>
+                                    Budget
+                                </span>
+
+                                <strong>
+                                    ₹<%= task.budget %>
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Deadline
+                                </span>
+
+                                <strong>
+                                    <%= new Date(task.deadline).toLocaleDateString() %>
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Actions -->
+
+                        <div class="task-actions">
+
+                            <a
+                                href="/tasks/<%= task._id %>"
+                                class="view-btn"
+                            >
+                                View
+                            </a>
+
+
+                            <a
+                                href="/tasks/<%= task._id %>/edit"
+                                class="edit-btn"
+                            >
+                                Edit
+                            </a>
+
+
+                            <form
+                                action="/tasks/<%= task._id %>?_method=DELETE"
+                                method="POST"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-btn"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </article>
+
+                <% }) %>
+
+            </section>
+
+        <% } %>
+
+    </main>
+
+</body>
+
+</html>

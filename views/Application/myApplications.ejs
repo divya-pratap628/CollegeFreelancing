@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Applications | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+
+    <main class="applications-container">
+
+        <!-- Header -->
+
+        <section class="applications-header">
+
+            <p class="dashboard-label">
+                MY WORK
+            </p>
+
+            <h1>
+                My Applications 📝
+            </h1>
+
+            <p>
+                Track the tasks you have applied for.
+            </p>
+
+        </section>
+
+
+        <% if (applications.length === 0) { %>
+
+            <!-- Empty -->
+
+            <section class="empty-applications">
+
+                <div class="empty-icon">
+                    📝
+                </div>
+
+                <h2>
+                    No Applications Yet
+                </h2>
+
+                <p>
+                    You haven't applied for any tasks yet.
+                </p>
+
+                <a href="/dashboard">
+                    Find Tasks →
+                </a>
+
+            </section>
+
+
+        <% } else { %>
+
+
+            <section class="applications-grid">
+
+                <% applications.forEach((application) => { %>
+
+
+                    <!-- Deleted Task -->
+
+                    <% if (!application.task) { %>
+
+                        <div class="application-card deleted-application">
+
+                            <div class="application-card-top">
+
+                                <span class="deleted-badge">
+                                    Task Deleted
+                                </span>
+
+                            </div>
+
+                            <h2>
+                                Task No Longer Available
+                            </h2>
+
+                            <p>
+                                The task associated with this application
+                                has been deleted.
+                            </p>
+
+                            <div class="deleted-message">
+                                This application can no longer be viewed.
+                            </div>
+
+                        </div>
+
+
+                    <% } else { %>
+
+
+                        <!-- Normal Application -->
+
+                        <div class="application-card">
+
+
+                            <!-- Top -->
+
+                            <div class="application-card-top">
+
+                                <span class="category">
+                                    <%= application.task.category %>
+                                </span>
+
+
+                                <span class="application-status">
+
+                                    <%= application.status %>
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- Title -->
+
+                            <h2 class="application-title">
+
+                                <%= application.task.title %>
+
+                            </h2>
+
+
+                            <!-- Description -->
+
+                            <p class="application-description">
+
+                                <%= application.task.description %>
+
+                            </p>
+
+
+                            <!-- Details -->
+
+                            <div class="application-details">
+
+
+                                <div>
+
+                                    <span>
+                                        Your Bid
+                                    </span>
+
+                                    <strong>
+                                        ₹<%= application.bidAmount %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Completion Time
+                                    </span>
+
+                                    <strong>
+                                        <%= application.completionTime %>
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- Actions -->
+
+                            <div class="application-actions">
+
+                                <a
+                                    href="/tasks/<%= application.task._id %>"
+                                    class="view-application-btn"
+                                >
+                                    View Task →
+                                </a>
+
+
+                                <% if (application.status === "Accepted") { %>
+
+                                    <a
+                                        href="/tasks/<%= application.task._id %>/submit"
+                                        class="submit-work-btn"
+                                    >
+                                        Submit Work
+                                    </a>
+
+                                <% } %>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    <% } %>
+
+
+                <% }) %>
+
+            </section>
+
+
+        <% } %>
+
+
+    </main>
+
+</body>
+
+</html>

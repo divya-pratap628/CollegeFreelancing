@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="edit-profile-container">
+
+        <!-- Back -->
+
+        <a
+            href="/profile"
+            class="back-link"
+        >
+            ← Back to Profile
+        </a>
+
+
+        <!-- Card -->
+
+        <section class="edit-profile-card">
+
+
+            <!-- Header -->
+
+            <div class="edit-profile-header">
+
+                <div class="profile-edit-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <p class="small-title">
+                        ACCOUNT SETTINGS
+                    </p>
+
+                    <h1>
+                        Edit Profile ✏️
+                    </h1>
+
+                    <p>
+                        Update your personal information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Form -->
+
+            <form
+                action="/profile?_method=PUT"
+                method="POST"
+                class="edit-profile-form"
+            >
+
+
+                <!-- Name -->
+
+                <div class="profile-form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="<%= user.name %>"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="profile-form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<%= user.email %>"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- College -->
+
+                <div class="profile-form-group">
+
+                    <label for="college">
+                        College
+                    </label>
+
+                    <input
+                        type="text"
+                        id="college"
+                        name="college"
+                        value="<%= user.college %>"
+                        placeholder="Enter your college"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Role -->
+
+                <div class="profile-form-group">
+
+                    <label for="role">
+                        Role
+                    </label>
+
+                    <select
+                        id="role"
+                        name="role"
+                    >
+
+                        <option
+                            value="Worker"
+                            <%= user.role === "Worker" ? "selected" : "" %>
+                        >
+                            Worker
+                        </option>
+
+                        <option
+                            value="Client"
+                            <%= user.role === "Client" ? "selected" : "" %>
+                        >
+                            Client
+                        </option>
+
+                    </select>
+
+                    <p class="profile-help">
+                        Worker = complete tasks &nbsp; • &nbsp;
+                        Client = post tasks
+                    </p>
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="edit-profile-actions">
+
+                    <a
+                        href="/profile"
+                        class="profile-cancel-btn"
+                    >
+                        Cancel
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="profile-update-btn"
+                    >
+                        ✓ Update Profile
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

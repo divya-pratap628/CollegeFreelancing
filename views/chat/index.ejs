@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chat | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="chat-container">
+
+        <!-- Chat Header -->
+
+        <section class="chat-header">
+
+            <div>
+
+                <p class="small-title">
+                    TASK CHAT
+                </p>
+
+                <h1>
+                    💬 Project Chat
+                </h1>
+
+                <p>
+                    Discuss the project with the other user.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/tasks/<%= task._id %>"
+                class="chat-back-btn"
+            >
+                ← Back to Task
+            </a>
+
+        </section>
+
+
+        <!-- Chat Box -->
+
+        <section class="chat-card">
+
+            <!-- Messages -->
+
+            <div class="messages-container">
+
+                <% if (chats.length === 0) { %>
+
+                    <div class="no-messages">
+
+                        <div class="no-message-icon">
+                            💬
+                        </div>
+
+                        <h2>
+                            No Messages Yet
+                        </h2>
+
+                        <p>
+                            Start the conversation about this project.
+                        </p>
+
+                    </div>
+
+
+                <% } else { %>
+
+
+                    <% chats.forEach((chat) => { %>
+
+                        <div class="message-row">
+
+                            <div class="message-avatar">
+                                <%= chat.from.name.charAt(0).toUpperCase() %>
+                            </div>
+
+
+                            <div class="message-content">
+
+                                <div class="message-name">
+
+                                    <strong>
+                                        <%= chat.from.name %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="message-bubble">
+
+                                    <%= chat.message %>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    <% }) %>
+
+
+                <% } %>
+
+            </div>
+
+
+            <!-- Message Form -->
+
+            <form
+                action="/tasks/<%= task._id %>/chat"
+                method="POST"
+                class="chat-form"
+            >
+
+                <textarea
+                    name="message"
+                    rows="2"
+                    placeholder="Type your message..."
+                    required
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    class="send-message-btn"
+                >
+                    Send →
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

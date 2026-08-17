@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Submission | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="submission-view-container">
+
+        <!-- Back -->
+
+        <a
+            href="/notifications"
+            class="back-link"
+        >
+            ← Back to Notifications
+        </a>
+
+
+        <!-- Page Header -->
+
+        <section class="submission-view-header">
+
+            <div>
+
+                <p class="small-title">
+                    PROJECT REVIEW
+                </p>
+
+                <h1>
+                    Submitted Work 📤
+                </h1>
+
+                <p>
+                    Review the work submitted by the assigned worker.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Task Information -->
+
+        <section class="submission-task-card">
+
+            <div>
+
+                <span>
+                    TASK
+                </span>
+
+                <h2>
+                    <%= task.title %>
+                </h2>
+
+            </div>
+
+
+            <div class="submission-task-details">
+
+                <div>
+
+                    <span>
+                        Budget
+                    </span>
+
+                    <strong>
+                        ₹<%= task.budget %>
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong>
+                        <%= task.status %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Submissions -->
+
+        <% if (submissions.length === 0) { %>
+
+            <section class="empty-state">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <h2>
+                    No Submission Found
+                </h2>
+
+                <p>
+                    The worker has not submitted any work yet.
+                </p>
+
+            </section>
+
+
+        <% } else { %>
+
+
+            <% submissions.forEach((submission) => { %>
+
+                <section class="submission-review-card">
+
+
+                    <!-- Worker -->
+
+                    <div class="worker-header">
+
+                        <div class="worker-avatar">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <span>
+                                SUBMITTED BY
+                            </span>
+
+                            <h2>
+                                <%= submission.worker.name %>
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Submission Status -->
+
+                    <div class="review-status-row">
+
+                        <span>
+                            Submission Status
+                        </span>
+
+
+                        <% if (submission.status === "Pending Review") { %>
+
+                            <span class="review-status pending-review">
+                                ● Pending Review
+                            </span>
+
+                        <% } else if (submission.status === "Approved") { %>
+
+                            <span class="review-status approved">
+                                ● Approved
+                            </span>
+
+                        <% } else { %>
+
+                            <span class="review-status changes">
+                                ● Changes Requested
+                            </span>
+
+                        <% } %>
+
+                    </div>
+
+
+                    <!-- Message -->
+
+                    <div class="submission-message-box">
+
+                        <h3>
+                            💬 Worker's Message
+                        </h3>
+
+                        <p>
+                            <%= submission.message || "No message provided." %>
+                        </p>
+
+                    </div>
+
+
+                    <!-- File -->
+
+                    <div class="submitted-file">
+
+                        <div class="file-preview-icon">
+                            📎
+                        </div>
+
+                        <div class="file-details">
+
+                            <span>
+                                SUBMITTED FILE
+                            </span>
+
+                            <strong>
+                                <%= submission.file %>
+                            </strong>
+
+                        </div>
+
+
+                        <a
+                            href="/uploads/<%= submission.file %>"
+                            target="_blank"
+                            class="file-view-btn"
+                        >
+                            View File →
+                        </a>
+
+                    </div>
+
+
+                    <!-- Date -->
+
+                    <div class="submission-date">
+
+                        📅 Submitted:
+
+                        <% if (submission.submittedAt) { %>
+
+                            <%= new Date(
+                                submission.submittedAt
+                            ).toLocaleString() %>
+
+                        <% } else { %>
+
+                            Date unavailable
+
+                        <% } %>
+
+                    </div>
+
+
+                    <!-- Client Actions -->
+
+                    <% if (submission.status === "Pending Review") { %>
+
+                        <div class="review-actions">
+
+
+                            <form
+                                action="/submission/<%= submission._id %>/approve?_method=PUT"
+                                method="POST"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="approve-btn"
+                                >
+                                    ✓ Approve Work
+                                </button>
+
+                            </form>
+
+
+                            <form
+                                action="/submission/<%= submission._id %>/changes?_method=PUT"
+                                method="POST"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="changes-btn"
+                                >
+                                    ↻ Request Changes
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    <% } else if (submission.status === "Approved") { %>
+
+                        <div class="approved-message">
+                            ✓ This work has been approved.
+                        </div>
+
+                    <% } else { %>
+
+                        <div class="changes-message">
+                            ↻ Changes have been requested from the worker.
+                        </div>
+
+                    <% } %>
+
+
+                </section>
+
+            <% }) %>
+
+
+        <% } %>
+
+
+    </main>
+
+</body>
+
+</html>

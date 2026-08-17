@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Applicants | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="applicants-container">
+
+        <!-- Header -->
+
+        <section class="page-header">
+
+            <div>
+
+                <p class="small-title">
+                    TASK MANAGEMENT
+                </p>
+
+                <h1>
+                    Applicants 👥
+                </h1>
+
+                <p>
+                    Review workers who applied for
+                    <strong><%= task.title %></strong>.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/tasks/<%= task._id %>"
+                class="secondary-btn"
+            >
+                ← Back to Task
+            </a>
+
+        </section>
+
+
+        <!-- Applications -->
+
+        <% if (application.length === 0) { %>
+
+            <section class="empty-state">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <h2>
+                    No Applications Yet
+                </h2>
+
+                <p>
+                    Workers haven't applied for this task yet.
+                </p>
+
+            </section>
+
+
+        <% } else { %>
+
+
+            <section class="applicants-grid">
+
+                <% application.forEach((application) => { %>
+
+                    <article class="applicant-card">
+
+
+                        <!-- Applicant Header -->
+
+                        <div class="applicant-header">
+
+                            <div class="applicant-avatar">
+                                👤
+                            </div>
+
+                            <div>
+
+                                <h2>
+                                    Worker Application
+                                </h2>
+
+                                <p>
+                                    Application #<%= application._id %>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Status -->
+
+                        <div class="applicant-status-row">
+
+                            <span class="status-label">
+                                Application Status
+                            </span>
+
+
+                            <% if (application.status === "Pending") { %>
+
+                                <span class="status pending">
+                                    ● Pending
+                                </span>
+
+                            <% } else if (application.status === "Accepted") { %>
+
+                                <span class="status accepted">
+                                    ● Accepted
+                                </span>
+
+                            <% } else if (application.status === "Rejected") { %>
+
+                                <span class="status rejected">
+                                    ● Rejected
+                                </span>
+
+                            <% } else { %>
+
+                                <span class="status">
+                                    ● <%= application.status %>
+                                </span>
+
+                            <% } %>
+
+                        </div>
+
+
+                        <!-- Proposal -->
+
+                        <div class="applicant-section">
+
+                            <h3>
+                                💬 Proposal
+                            </h3>
+
+                            <p>
+                                <%= application.message %>
+                            </p>
+
+                        </div>
+
+
+                        <!-- Application Details -->
+
+                        <div class="applicant-info-grid">
+
+                            <div class="applicant-info">
+
+                                <span>
+                                    💰 Bid Amount
+                                </span>
+
+                                <strong>
+                                    ₹<%= application.bidAmount %>
+                                </strong>
+
+                            </div>
+
+
+                            <div class="applicant-info">
+
+                                <span>
+                                    ⏱ Completion Time
+                                </span>
+
+                                <strong>
+                                    <%= application.completionTime %>
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Accept / Reject -->
+
+                        <% if (
+                            task.createdBy.toString() ===
+                            userId.toString() &&
+                            application.status === "Pending"
+                        ) { %>
+
+
+                            <div class="applicant-actions">
+
+                                <form
+                                    action="/application/<%= application._id %>/accept?_method=PUT"
+                                    method="POST"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="accept-btn"
+                                    >
+                                        ✓ Accept
+                                    </button>
+
+                                </form>
+
+
+                                <form
+                                    action="/application/<%= application._id %>/reject?_method=PUT"
+                                    method="POST"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="reject-btn"
+                                    >
+                                        ✕ Reject
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+
+                        <% } else if (application.status === "Accepted") { %>
+
+                            <div class="accepted-message">
+
+                                ✓ Worker Accepted
+
+                            </div>
+
+
+                        <% } else if (application.status === "Rejected") { %>
+
+                            <div class="rejected-message">
+
+                                ✕ Application Rejected
+
+                            </div>
+
+                        <% } %>
+
+
+                    </article>
+
+                <% }) %>
+
+            </section>
+
+        <% } %>
+
+    </main>
+
+</body>
+
+</html>

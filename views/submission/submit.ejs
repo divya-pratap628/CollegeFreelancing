@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Submit Work | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="submission-container">
+
+        <!-- Back -->
+
+        <a
+            href="/myApplications"
+            class="back-link"
+        >
+            ← Back to My Applications
+        </a>
+
+
+        <!-- Main Card -->
+
+        <section class="submission-card">
+
+            <!-- Header -->
+
+            <div class="submission-header">
+
+                <p class="small-title">
+                    PROJECT SUBMISSION
+                </p>
+
+                <h1>
+                    Submit Your Work 📤
+                </h1>
+
+                <p>
+                    Upload your completed project and send it
+                    to the client for review.
+                </p>
+
+            </div>
+
+
+            <!-- Task Summary -->
+
+            <div class="submission-task">
+
+                <div>
+
+                    <span>
+                        Task
+                    </span>
+
+                    <strong>
+                        <%= task.title %>
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Budget
+                    </span>
+
+                    <strong>
+                        ₹<%= task.budget %>
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong class="submission-status">
+                        <%= task.status %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Submission Form -->
+
+            <form
+                action="/tasks/<%= task._id %>/submit"
+                method="POST"
+                enctype="multipart/form-data"
+                class="submission-form"
+            >
+
+                <!-- Message -->
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Submission Message
+                    </label>
+
+                    <p class="form-help">
+                        Tell the client what you completed
+                        and provide any important information.
+                    </p>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        placeholder="Example: I completed the project and included all requested features..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- File -->
+
+                <div class="form-group">
+
+                    <label for="workFile">
+                        Upload Your Work
+                    </label>
+
+                    <p class="form-help">
+                        Upload your completed project, document,
+                        report, PPT or other required file.
+                    </p>
+
+
+                    <div class="file-upload">
+
+                        <div class="file-icon">
+                            📎
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Choose your project file
+                            </strong>
+
+                            <p>
+                                Click below to select a file
+                            </p>
+
+                        </div>
+
+                        <input
+                            type="file"
+                            id="workFile"
+                            name="workFile"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="submission-actions">
+
+                    <a
+                        href="/myApplications"
+                        class="cancel-btn"
+                    >
+                        Cancel
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="submit-work-button"
+                    >
+                        📤 Submit Work
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

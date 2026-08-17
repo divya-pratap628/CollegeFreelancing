@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= task.title %> | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="task-details-container">
+
+        <!-- Back -->
+        <a href="/dashboard" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <!-- Main Task Card -->
+        <section class="task-details-card">
+
+            <!-- Header -->
+
+            <div class="task-details-header">
+
+                <div>
+
+                    <span class="task-category">
+                        <%= task.category %>
+                    </span>
+
+                    <h1>
+                        <%= task.title %>
+                    </h1>
+
+                    <p class="task-subtitle">
+                        Posted project on CollegeFreelancing
+                    </p>
+
+                </div>
+
+
+                <!-- Status -->
+
+                <% if (task.status === "Open") { %>
+
+                    <span class="large-status open">
+                        ● Open
+                    </span>
+
+                <% } else if (task.status === "Assigned") { %>
+
+                    <span class="large-status assigned">
+                        ● Assigned
+                    </span>
+
+                <% } else if (task.status === "Completed") { %>
+
+                    <span class="large-status completed">
+                        ● Completed
+                    </span>
+
+                <% } else { %>
+
+                    <span class="large-status cancelled">
+                        ● <%= task.status %>
+                    </span>
+
+                <% } %>
+
+            </div>
+
+
+            <hr>
+
+
+            <!-- Description -->
+
+            <div class="task-section">
+
+                <h2>
+                    About this task
+                </h2>
+
+                <p class="task-full-description">
+                    <%= task.description %>
+                </p>
+
+            </div>
+
+
+            <!-- Task Information -->
+
+            <div class="task-info-grid">
+
+                <div class="task-info-box">
+
+                    <span>
+                        💰 Budget
+                    </span>
+
+                    <strong>
+                        ₹<%= task.budget %>
+                    </strong>
+
+                </div>
+
+
+                <div class="task-info-box">
+
+                    <span>
+                        📅 Deadline
+                    </span>
+
+                    <strong>
+                        <%= new Date(task.deadline).toLocaleDateString() %>
+                    </strong>
+
+                </div>
+
+
+                <div class="task-info-box">
+
+                    <span>
+                        🏷️ Category
+                    </span>
+
+                    <strong>
+                        <%= task.category %>
+                    </strong>
+
+                </div>
+
+
+                <div class="task-info-box">
+
+                    <span>
+                        🏫 College
+                    </span>
+
+                    <strong>
+                        <%= task.college || "Not specified" %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Worker Action -->
+
+            <% if (task.status === "Open") { %>
+
+                <div class="apply-section">
+
+                    <h2>
+                        Interested in this project?
+                    </h2>
+
+                    <p>
+                        Submit your application and tell the client
+                        why you are suitable for this task.
+                    </p>
+
+                    <a
+                        href="/tasks/<%= task._id %>/apply"
+                        class="apply-btn"
+                    >
+                        Apply for this Task →
+                    </a>
+
+                </div>
+
+            <% } else { %>
+
+                <div class="assigned-message">
+
+                    <strong>
+                        🔒 This task is no longer accepting applications.
+                    </strong>
+
+                    <p>
+                        The task has already been assigned or completed.
+                    </p>
+
+                </div>
+
+            <% } %>
+
+
+            <!-- Actions -->
+
+            <div class="task-action-buttons">
+
+                <a
+                    href="/tasks/<%= task._id %>/chat"
+                    class="secondary-btn"
+                >
+                    💬 Chat
+                </a>
+
+
+                <a
+                    href="/tasks/<%= task._id %>/application"
+                    class="secondary-btn"
+                >
+                    👥 View Applicants
+                </a>
+
+
+                <a
+                    href="/tasks/<%= task._id %>/edit"
+                    class="edit-task-btn"
+                >
+                    ✏️ Edit
+                </a>
+
+
+                <form
+                    method="POST"
+                    action="/tasks/<%= task._id %>?_method=DELETE"
+                >
+
+                    <button
+                        type="submit"
+                        class="delete-task-btn"
+                    >
+                        🗑️ Delete
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

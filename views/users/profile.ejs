@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="profile-container">
+
+        <!-- Profile Header -->
+
+        <section class="profile-header">
+
+            <div class="profile-avatar">
+                <%= user.name.charAt(0).toUpperCase() %>
+            </div>
+
+            <div>
+
+                <p class="small-title">
+                    MY ACCOUNT
+                </p>
+
+                <h1>
+                    <%= user.name %> 👋
+                </h1>
+
+                <p>
+                    Manage your CollegeFreelancing profile.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Profile Card -->
+
+        <section class="profile-card">
+
+            <div class="profile-card-header">
+
+                <div>
+
+                    <p class="profile-section-label">
+                        PERSONAL INFORMATION
+                    </p>
+
+                    <h2>
+                        Profile Details
+                    </h2>
+
+                </div>
+
+                <span class="profile-role-badge">
+                    <%= user.role %>
+                </span>
+
+            </div>
+
+
+            <!-- Details -->
+
+            <div class="profile-details">
+
+
+                <!-- Name -->
+
+                <div class="profile-detail">
+
+                    <div class="profile-detail-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Full Name
+                        </span>
+
+                        <strong>
+                            <%= user.name %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="profile-detail">
+
+                    <div class="profile-detail-icon">
+                        ✉️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Email Address
+                        </span>
+
+                        <strong>
+                            <%= user.email %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- College -->
+
+                <div class="profile-detail">
+
+                    <div class="profile-detail-icon">
+                        🎓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            College
+                        </span>
+
+                        <strong>
+                            <%= user.college %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Role -->
+
+                <div class="profile-detail">
+
+                    <div class="profile-detail-icon">
+                        💼
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Account Role
+                        </span>
+
+                        <strong>
+                            <%= user.role %>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="profile-actions">
+
+                <a
+                    href="/profile/edit"
+                    class="edit-profile-btn"
+                >
+                    ✏️ Edit Profile
+                </a>
+
+                <a
+                    href="/dashboard"
+                    class="back-dashboard-btn"
+                >
+                    ← Dashboard
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Account Info -->
+
+        <section class="profile-info-box">
+
+            <div class="profile-info-icon">
+                🔐
+            </div>
+
+            <div>
+
+                <h3>
+                    Account Security
+                </h3>
+
+                <p>
+                    Keep your account information up to date.
+                    Never share your password with anyone.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</body>
+
+</html>

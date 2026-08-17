@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="dashboard-container">
+
+        <!-- Welcome -->
+
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <p class="dashboard-label">
+                    WELCOME BACK 👋
+                </p>
+
+                <h1>
+                    Hey, <%= user.name %>
+                </h1>
+
+                <p>
+                    Manage your tasks, applications and freelancing work
+                    from one place.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-profile">
+
+                <div class="dashboard-avatar">
+                    <%= user.name.charAt(0).toUpperCase() %>
+                </div>
+
+                <h3>
+                    <%= user.name %>
+                </h3>
+
+                <span>
+                    <%= user.role %>
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- Statistics -->
+
+        <section class="dashboard-stats">
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon">
+                    📋
+                </div>
+
+                <p>
+                    Total Tasks
+                </p>
+
+                <h2>
+                    <%= tasks.length %>
+                </h2>
+
+            </div>
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon">
+                    💼
+                </div>
+
+                <p>
+                    My Applications
+                </p>
+
+                <h2>
+                    —
+                </h2>
+
+            </div>
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon">
+                    💰
+                </div>
+
+                <p>
+                    Wallet
+                </p>
+
+                <h4>
+                    Coming Soon!
+                </h4>
+
+            </div>
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon">
+                    🔔
+                </div>
+
+                <p>
+                    Notifications
+                </p>
+
+                <h2>
+                    View
+                </h2>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- Quick Actions -->
+
+        <section class="dashboard-section">
+
+            <div class="dashboard-section-header">
+
+                <p class="dashboard-label">
+                    SHORTCUTS
+                </p>
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+            </div>
+
+
+            <div class="quick-actions-grid">
+
+
+                <a
+                    href="/postTask"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        ➕
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Post Task
+                        </h3>
+
+                        <p>
+                            Create a new project
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/myTasks"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            My Tasks
+                        </h3>
+
+                        <p>
+                            Manage your posted tasks
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/myApplications"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Applications
+                        </h3>
+
+                        <p>
+                            View your applications
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/notifications"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Notifications
+                        </h3>
+
+                        <p>
+                            Check your notifications
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/profile"
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Profile
+                        </h3>
+
+                        <p>
+                            Manage your profile
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                   
+                    class="quick-action-card"
+                >
+
+                    <div class="quick-action-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Wallet
+                        </h3>
+
+                        <p>
+                            Wallet is on progress!!
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- Recent Tasks -->
+
+        <section class="dashboard-section">
+
+            <div class="dashboard-section-header">
+
+                <p class="dashboard-label">
+                    ACTIVITY
+                </p>
+
+                <h2>
+                    Recent Tasks
+                </h2>
+
+            </div>
+
+
+            <% if (tasks.length === 0) { %>
+
+                <div class="empty-dashboard">
+
+                    <div>
+                        📋
+                    </div>
+
+                    <h3>
+                        No Tasks Found
+                    </h3>
+
+                    <p>
+                        There are no tasks available yet.
+                    </p>
+
+                    <a href="/postTask">
+                        Post Your First Task →
+                    </a>
+
+                </div>
+
+
+            <% } else { %>
+
+
+                <div class="task-dashboard-grid">
+
+                    <% tasks.forEach((task) => { %>
+
+                        <div class="dashboard-task-card">
+
+                            <div class="task-card-top">
+
+                                <span>
+                                    <%= task.category %>
+                                </span>
+
+                                <strong>
+                                    <%= task.status %>
+                                </strong>
+
+                            </div>
+
+
+                            <h3>
+                                <%= task.title %>
+                            </h3>
+
+
+                            <p>
+                                <%= task.description %>
+                            </p>
+
+
+                            <div class="task-card-bottom">
+
+                                <strong>
+                                    ₹<%= task.budget %>
+                                </strong>
+
+                                <a
+                                    href="/tasks/<%= task._id %>"
+                                >
+                                    View Task →
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+
+            <% } %>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

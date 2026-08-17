@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post Task | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="post-task-container">
+
+        <!-- Back -->
+
+        <a href="/dashboard" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <!-- Main Card -->
+
+        <section class="post-task-card">
+
+            <!-- Header -->
+
+            <div class="post-task-header">
+
+                <p class="small-title">
+                    CREATE PROJECT
+                </p>
+
+                <h1>
+                    Post a New Task 🚀
+                </h1>
+
+                <p>
+                    Describe your project and let skilled students
+                    help you complete it.
+                </p>
+
+            </div>
+
+
+            <!-- Form -->
+
+            <form
+                action="/postTask"
+                method="POST"
+                class="post-task-form"
+            >
+
+                <!-- Task Title -->
+
+                <div class="post-form-group">
+
+                    <label for="title">
+                        Task Title
+                    </label>
+
+                    <p class="post-help">
+                        Give your project a clear and simple title.
+                    </p>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Example: C++ Assignment"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="post-form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <p class="post-help">
+                        Explain what the worker needs to complete.
+                    </p>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="7"
+                        placeholder="Describe your project requirements..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Category -->
+
+                <div class="post-form-group">
+
+                    <label for="category">
+                        Category
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        required
+                    >
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Assignment">
+                            Assignment
+                        </option>
+
+                        <option value="PPT">
+                            PPT
+                        </option>
+
+                        <option value="Report">
+                            Report
+                        </option>
+
+                        <option value="Coding">
+                            Coding
+                        </option>
+
+                        <option value="Lab File">
+                            Lab File
+                        </option>
+
+                        <option value="Notes">
+                            Notes
+                        </option>
+
+                        <option value="Mini Project">
+                            Mini Project
+                        </option>
+
+                        <option value="Major Project">
+                            Major Project
+                        </option>
+
+                        <option value="Poster">
+                            Poster
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Other Category -->
+
+                <div class="post-form-group">
+
+                    <label for="otherCategory">
+                        Other Category
+                        <span>(Optional)</span>
+                    </label>
+
+                    <textarea
+                        id="otherCategory"
+                        name="otherCategory"
+                        rows="3"
+                        placeholder="If you selected Other, specify the category..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Budget + Deadline -->
+
+                <div class="post-two-columns">
+
+
+                    <div class="post-form-group">
+
+                        <label for="budget">
+                            Budget (₹)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="budget"
+                            name="budget"
+                            placeholder="Example: 500"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="post-form-group">
+
+                        <label for="deadline">
+                            Deadline
+                        </label>
+
+                        <input
+                            type="date"
+                            id="deadline"
+                            name="deadline"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Notice -->
+
+                <div class="post-task-notice">
+
+                    <span>
+                        💡
+                    </span>
+
+                    <p>
+                        Make sure your budget and deadline are realistic.
+                        This helps workers decide whether to apply.
+                    </p>
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="post-task-actions">
+
+                    <a
+                        href="/dashboard"
+                        class="cancel-post-btn"
+                    >
+                        Cancel
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="post-task-btn"
+                    >
+                        🚀 Post Task
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

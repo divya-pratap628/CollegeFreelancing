@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+    <main class="admin-container">
+
+        <!-- Header -->
+
+        <section class="admin-header">
+
+            <div>
+
+                <p class="admin-small-title">
+                    ADMIN PANEL
+                </p>
+
+                <h1>
+                    Admin Dashboard 🛠️
+                </h1>
+
+                <p>
+                    Monitor users, tasks and platform activity.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Statistics -->
+
+        <section class="admin-stats-grid">
+
+
+            <!-- Total Users -->
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon users-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Users
+                    </p>
+
+                    <h2>
+                        <%= totalUsers %>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Workers -->
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon workers-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Workers
+                    </p>
+
+                    <h2>
+                        <%= totalWorker %>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Clients -->
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon clients-icon">
+                    🧑‍💻
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Clients
+                    </p>
+
+                    <h2>
+                        <%= totalClient %>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Tasks -->
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon tasks-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Tasks
+                    </p>
+
+                    <h2>
+                        <%= totalTasks %>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Applications -->
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon applications-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Applications
+                    </p>
+
+                    <h2>
+                        <%= totalApplication %>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- Notifications -->
+
+            <div class="admin-stat-card">
+
+                <div class="admin-stat-icon notifications-icon">
+                    🔔
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Notifications
+                    </p>
+
+                    <h2>
+                        <%= totalNotifaction %>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- Admin Actions -->
+
+        <section class="admin-actions-section">
+
+            <div class="admin-section-header">
+
+                <div>
+
+                    <p class="admin-small-title">
+                        MANAGEMENT
+                    </p>
+
+                    <h2>
+                        Admin Controls
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-actions-grid">
+
+
+                <a
+                    href="/admin/users"
+                    class="admin-action-card"
+                >
+
+                    <span>
+                        👥
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Manage Users
+                        </h3>
+
+                        <p>
+                            View and manage registered users.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/admin/tasks"
+                    class="admin-action-card"
+                >
+
+                    <span>
+                        📋
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Manage Tasks
+                        </h3>
+
+                        <p>
+                            View and manage posted tasks.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/admin/applications"
+                    class="admin-action-card"
+                >
+
+                    <span>
+                        📝
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Applications
+                        </h3>
+
+                        <p>
+                            Monitor task applications.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/admin/notifications"
+                    class="admin-action-card"
+                >
+
+                    <span>
+                        🔔
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Notifications
+                        </h3>
+
+                        <p>
+                            Monitor platform notifications.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- Back -->
+
+        <div class="admin-footer">
+
+            <a
+                href="/dashboard"
+                class="admin-back-btn"
+            >
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

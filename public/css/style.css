@@ -5509,3 +5509,1541 @@ body {
     }
 
 }
+
+/* =====================================================
+   MODERN MY TASKS / APPLICATIONS / NOTIFICATIONS UI
+   ===================================================== */
+
+
+/* ================================
+   COMMON PAGE
+================================ */
+
+.my-tasks-page,
+.applications-page,
+.notifications-page {
+    min-height: calc(100vh - 70px);
+    background: #f6f8fc;
+    padding: 20px 0 60px;
+}
+
+
+.my-tasks-container,
+.applications-container,
+.notifications-container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+
+/* ================================
+   MODERN PAGE HEADER
+================================ */
+
+.modern-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+
+    margin-bottom: 28px;
+}
+
+
+.page-label {
+    display: inline-block;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    color: #2563eb;
+
+    margin-bottom: 8px;
+}
+
+
+.modern-page-header h1 {
+    font-size: 34px;
+
+    color: #111827;
+
+    margin-bottom: 7px;
+}
+
+
+.modern-page-header p {
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   PRIMARY BUTTON
+================================ */
+
+.primary-action {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.primary-action:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* ================================
+   SUMMARY
+================================ */
+
+.page-summary,
+.application-summary {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding: 15px 20px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.03);
+}
+
+
+.summary-icon,
+.application-summary-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eef4ff;
+
+    font-size: 20px;
+}
+
+
+.page-summary span,
+.application-summary span {
+    display: block;
+
+    color: #8a93a5;
+
+    font-size: 11px;
+
+    margin-bottom: 4px;
+}
+
+
+.page-summary strong,
+.application-summary strong {
+    font-size: 20px;
+
+    color: #172033;
+}
+
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.modern-empty {
+    background: white;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 20px;
+
+    padding: 60px 25px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+
+.empty-circle {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #eef4ff;
+
+    font-size: 30px;
+}
+
+
+.modern-empty h2 {
+    font-size: 22px;
+
+    color: #172033;
+
+    margin-bottom: 8px;
+}
+
+
+.modern-empty p {
+    color: #7b8496;
+
+    font-size: 14px;
+
+    margin-bottom: 22px;
+}
+
+
+/* ================================
+   MY TASKS GRID
+================================ */
+
+.modern-task-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* ================================
+   TASK CARD
+================================ */
+
+.modern-task-card {
+    background: white;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 18px;
+
+    padding: 23px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.035);
+
+    transition: 0.25s;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.modern-task-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+
+    border-color: #dbe5ff;
+}
+
+
+/* ================================
+   CARD TOP
+================================ */
+
+.modern-card-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+
+.category-badge {
+    display: inline-block;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.modern-status {
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.status-open {
+    background: #ecfdf3;
+    color: #16a34a;
+}
+
+
+.status-assigned {
+    background: #eef4ff;
+    color: #2563eb;
+}
+
+
+.status-completed {
+    background: #f3e8ff;
+    color: #7c3aed;
+}
+
+
+.status-cancelled {
+    background: #fff1f2;
+    color: #dc2626;
+}
+
+
+/* ================================
+   TASK CONTENT
+================================ */
+
+.modern-task-title {
+    font-size: 20px;
+
+    color: #172033;
+
+    margin-bottom: 10px;
+
+    line-height: 1.35;
+}
+
+
+.modern-task-description {
+    color: #6b7280;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    min-height: 66px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ================================
+   TASK DETAILS
+================================ */
+
+.modern-task-details {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    padding: 16px 0;
+
+    border-top: 1px solid #edf0f5;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+
+.detail-item span {
+    display: block;
+
+    color: #8a93a5;
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+}
+
+
+.detail-item strong {
+    color: #172033;
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   TASK ACTIONS
+================================ */
+
+.modern-task-actions {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+
+.modern-task-actions a,
+.modern-task-actions form {
+    flex: 1;
+}
+
+
+.modern-task-actions form {
+    display: flex;
+}
+
+
+.modern-task-actions button {
+    width: 100%;
+}
+
+
+.modern-view-btn,
+.modern-edit-btn,
+.modern-delete-btn {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 40px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.modern-view-btn {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+.modern-view-btn:hover {
+    background: #1d4ed8;
+}
+
+
+.modern-edit-btn {
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+
+.modern-edit-btn:hover {
+    background: #dbeafe;
+}
+
+
+.modern-delete-btn {
+    background: #fff1f2;
+
+    color: #dc2626;
+}
+
+
+.modern-delete-btn:hover {
+    background: #ffe4e6;
+}
+
+
+/* ================================
+   APPLICATION GRID
+================================ */
+
+.modern-application-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+
+/* ================================
+   APPLICATION CARD
+================================ */
+
+.modern-application-card {
+    background: white;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.035);
+
+    transition: 0.25s;
+}
+
+
+.modern-application-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ================================
+   APPLICATION STATUS
+================================ */
+
+.application-status {
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.status-pending {
+    background: #fff7ed;
+
+    color: #d97706;
+}
+
+
+.status-accepted {
+    background: #ecfdf3;
+
+    color: #16a34a;
+}
+
+
+.status-rejected {
+    background: #fff1f2;
+
+    color: #dc2626;
+}
+
+
+/* ================================
+   APPLICATION CONTENT
+================================ */
+
+.modern-application-title {
+    font-size: 21px;
+
+    color: #172033;
+
+    margin-bottom: 9px;
+}
+
+
+.modern-application-description {
+    color: #6b7280;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    min-height: 44px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ================================
+   APPLICATION DETAILS
+================================ */
+
+.modern-application-details {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    padding: 16px 0;
+
+    border-top: 1px solid #edf0f5;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+
+.modern-application-details div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.modern-application-details span {
+    color: #8a93a5;
+
+    font-size: 10px;
+}
+
+
+.modern-application-details strong {
+    color: #172033;
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   APPLICATION MESSAGE
+================================ */
+
+.application-message-box {
+    margin-top: 18px;
+}
+
+
+.application-message-box span {
+    display: block;
+
+    color: #7b8496;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+
+.application-message-box p {
+    background: #f8faff;
+
+    border: 1px solid #e5eaf5;
+
+    border-radius: 10px;
+
+    padding: 13px;
+
+    color: #626b7c;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* ================================
+   APPLICATION BUTTONS
+================================ */
+
+.modern-application-actions {
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 18px;
+}
+
+
+.modern-secondary-btn,
+.modern-primary-btn {
+    flex: 1;
+
+    text-align: center;
+
+    padding: 11px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.modern-secondary-btn {
+    background: #f3f4f6;
+
+    color: #374151;
+}
+
+
+.modern-secondary-btn:hover {
+    background: #e5e7eb;
+}
+
+
+.modern-primary-btn {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+.modern-primary-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* ================================
+   NOTIFICATIONS
+================================ */
+
+.modern-notification-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* ================================
+   NOTIFICATION CARD
+================================ */
+
+.modern-notification-card {
+    display: flex;
+
+    gap: 17px;
+
+    background: white;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 17px;
+
+    padding: 20px;
+
+    transition: 0.25s;
+}
+
+
+.modern-notification-card:hover {
+    transform: translateX(4px);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+.notification-unread {
+    border-left: 4px solid #2563eb;
+
+    background: #f9fbff;
+}
+
+
+.notification-read {
+    opacity: 0.78;
+}
+
+
+/* ================================
+   NOTIFICATION ICON
+================================ */
+
+.modern-notification-icon {
+    width: 48px;
+
+    height: 48px;
+
+    min-width: 48px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    font-size: 20px;
+}
+
+
+/* ================================
+   NOTIFICATION CONTENT
+================================ */
+
+.modern-notification-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.notification-top-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+
+.notification-label {
+    display: block;
+
+    color: #2563eb;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+
+.notification-top-row h2 {
+    font-size: 17px;
+
+    color: #172033;
+}
+
+
+/* ================================
+   READ / NEW BADGE
+================================ */
+
+.notification-read-badge,
+.notification-unread-badge {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.notification-read-badge {
+    background: #f3f4f6;
+
+    color: #6b7280;
+}
+
+
+.notification-unread-badge {
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+.modern-notification-message {
+    color: #626b7c;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    margin-top: 9px;
+}
+
+
+/* ================================
+   NOTIFICATION FOOTER
+================================ */
+
+.modern-notification-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #edf0f5;
+}
+
+
+.modern-notification-date {
+    color: #8a93a5;
+
+    font-size: 10px;
+}
+
+
+.notification-view-btn {
+    background: #2563eb;
+
+    color: white;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.notification-view-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 950px) {
+
+    .modern-task-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .modern-task-grid,
+    .modern-application-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .my-tasks-container,
+    .applications-container,
+    .notifications-container {
+        width: 94%;
+    }
+
+
+    .modern-page-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .modern-page-header h1 {
+        font-size: 28px;
+    }
+
+
+    .primary-action {
+        width: 100%;
+    }
+
+
+    .modern-task-actions {
+        flex-direction: column;
+    }
+
+
+    .modern-application-actions {
+        flex-direction: column;
+    }
+
+
+    .modern-notification-card {
+        padding: 16px;
+
+        gap: 12px;
+    }
+
+
+    .notification-top-row {
+        flex-direction: column;
+    }
+
+
+    .modern-notification-footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .notification-view-btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+/* =========================================
+   MODERN REGISTER PAGE
+========================================= */
+
+.auth-page {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f5f7fb;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* Main */
+
+.register-wrapper {
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 45% 55%;
+}
+
+
+/* =========================================
+   LEFT SIDE
+========================================= */
+
+.register-info {
+    background: #172033;
+
+    color: white;
+
+    padding: 55px 8%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+
+.brand {
+    font-size: 22px;
+
+    font-weight: 800;
+}
+
+
+.brand span,
+.mobile-brand span {
+    color: #4f8cff;
+}
+
+
+.info-content {
+    max-width: 500px;
+
+    margin: auto 0;
+}
+
+
+.info-label {
+    color: #70a1ff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.info-content h1 {
+    font-size: 48px;
+
+    line-height: 1.12;
+
+    margin: 18px 0;
+}
+
+
+.info-content h1 span {
+    color: #4f8cff;
+}
+
+
+.info-content > p {
+    color: #b7c0d0;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+
+    max-width: 450px;
+}
+
+
+/* Features */
+
+.feature-list {
+    margin-top: 35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+.feature {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.feature-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 12px;
+
+    background: #26334d;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.feature strong {
+    display: block;
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+
+.feature p {
+    margin: 0;
+
+    color: #929db1;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.register-form-section {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px 25px;
+}
+
+
+.register-card {
+    width: 100%;
+
+    max-width: 470px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    border: 1px solid #e5e9f0;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.07);
+}
+
+
+/* Header */
+
+.form-header {
+    margin-bottom: 28px;
+}
+
+
+.form-header h2 {
+    color: #172033;
+
+    font-size: 28px;
+
+    margin: 0 0 7px;
+}
+
+
+.form-header p {
+    color: #7b8496;
+
+    font-size: 13px;
+
+    margin: 0;
+}
+
+
+.mobile-brand {
+    display: none;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.modern-register-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+}
+
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.form-group label {
+    color: #374151;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    height: 45px;
+
+    border: 1px solid #dce1ea;
+
+    border-radius: 9px;
+
+    padding: 0 13px;
+
+    outline: none;
+
+    background: #fff;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+
+.form-group input::placeholder {
+    color: #a5adba;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4f8cff;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 140, 255, 0.1);
+}
+
+
+.form-group small {
+    color: #9299a8;
+
+    font-size: 10px;
+}
+
+
+/* Password */
+
+.password-wrapper {
+    position: relative;
+}
+
+
+.password-wrapper input {
+    padding-right: 48px;
+}
+
+
+.password-toggle {
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   TERMS
+========================================= */
+
+.terms {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #737c8d;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+.terms input {
+    accent-color: #2563eb;
+}
+
+
+.terms a {
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   REGISTER BUTTON
+========================================= */
+
+.register-submit {
+    height: 47px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    transition: 0.2s;
+
+    margin-top: 4px;
+}
+
+
+.register-submit:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.2);
+}
+
+
+.register-submit span {
+    font-size: 17px;
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+.login-link {
+    text-align: center;
+
+    margin-top: 22px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf0f5;
+
+    color: #7b8496;
+
+    font-size: 12px;
+}
+
+
+.login-link a {
+    color: #2563eb;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    margin-left: 4px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .register-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+
+    .register-info {
+        display: none;
+    }
+
+
+    .mobile-brand {
+        display: block;
+
+        color: #172033;
+
+        font-size: 20px;
+
+        font-weight: 800;
+
+        margin-bottom: 25px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .register-form-section {
+        padding: 20px 15px;
+    }
+
+
+    .register-card {
+        padding: 28px 20px;
+
+        border-radius: 15px;
+    }
+
+
+    .form-header h2 {
+        font-size: 24px;
+    }
+
+}

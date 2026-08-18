@@ -2,224 +2,222 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Tasks | CollegeFreelancing</title>
 
     <link rel="stylesheet" href="/css/style.css">
-
 </head>
 
 <body>
 
-    <!-- Navbar -->
     <%- include("../partials/navbar") %>
 
+    <main class="my-tasks-page">
 
-    <main class="my-tasks-container">
+        <div class="my-tasks-container">
 
-        <!-- Header -->
+            <!-- Header -->
 
-        <section class="page-header">
+            <div class="modern-page-header">
 
-            <div>
+                <div>
+                    <span class="page-label">WORKSPACE</span>
 
-                <p class="small-title">
-                    WORKSPACE
-                </p>
+                    <h1>My Tasks</h1>
 
-                <h1>
-                    My Posted Tasks 📋
-                </h1>
+                    <p>
+                        Manage and track the tasks you have posted.
+                    </p>
+                </div>
 
-                <p>
-                    Manage all the projects you have posted.
-                </p>
+                <a href="/postTask" class="primary-action">
+                    + Post New Task
+                </a>
 
             </div>
 
 
-            <a href="/postTask" class="primary-btn">
-                + Post New Task
-            </a>
+            <!-- Task Count -->
 
-        </section>
+            <div class="page-summary">
 
-
-        <!-- Tasks -->
-
-        <% if (tasks.length === 0) { %>
-
-            <section class="empty-state">
-
-                <div class="empty-icon">
-                    📭
+                <div class="summary-icon">
+                    📋
                 </div>
 
-                <h2>
-                    No Tasks Posted Yet
-                </h2>
+                <div>
+                    <span>Total Tasks</span>
 
-                <p>
-                    You haven't posted any tasks yet.
-                </p>
+                    <strong>
+                        <%= tasks.length %>
+                    </strong>
+                </div>
 
-                <a href="/postTask" class="primary-btn">
-                    Post Your First Task
-                </a>
-
-            </section>
+            </div>
 
 
-        <% } else { %>
+            <!-- Tasks -->
 
+            <% if (tasks.length === 0) { %>
 
-            <section class="my-task-grid">
+                <div class="modern-empty">
 
-                <% tasks.forEach((task) => { %>
+                    <div class="empty-circle">
+                        📭
+                    </div>
 
-                    <article class="my-task-card">
+                    <h2>No Tasks Yet</h2>
 
-                        <!-- Top -->
+                    <p>
+                        You haven't posted any tasks yet.
+                    </p>
 
-                        <div class="my-task-top">
+                    <a href="/postTask" class="primary-action">
+                        Post Your First Task
+                    </a>
 
-                            <span class="category">
-                                <%= task.category %>
-                            </span>
+                </div>
 
+            <% } else { %>
 
-                            <% if (task.status === "Open") { %>
+                <div class="modern-task-grid">
 
-                                <span class="status open">
-                                    ● Open
+                    <% tasks.forEach((task) => { %>
+
+                        <div class="modern-task-card">
+
+                            <!-- Top -->
+
+                            <div class="modern-card-top">
+
+                                <span class="category-badge">
+                                    <%= task.category %>
                                 </span>
 
-                            <% } else if (task.status === "Assigned") { %>
+                                <% if (task.status === "Open") { %>
 
-                                <span class="status assigned">
-                                    ● Assigned
-                                </span>
+                                    <span class="modern-status status-open">
+                                        ● Open
+                                    </span>
 
-                            <% } else if (task.status === "Completed") { %>
+                                <% } else if (task.status === "Assigned") { %>
 
-                                <span class="status completed">
-                                    ● Completed
-                                </span>
+                                    <span class="modern-status status-assigned">
+                                        ● Assigned
+                                    </span>
 
-                            <% } else { %>
+                                <% } else if (task.status === "Completed") { %>
 
-                                <span class="status cancelled">
-                                    ● <%= task.status %>
-                                </span>
+                                    <span class="modern-status status-completed">
+                                        ● Completed
+                                    </span>
 
-                            <% } %>
+                                <% } else { %>
 
-                        </div>
+                                    <span class="modern-status status-cancelled">
+                                        ● <%= task.status %>
+                                    </span>
 
-
-                        <!-- Title -->
-
-                        <h2 class="my-task-title">
-                            <%= task.title %>
-                        </h2>
-
-
-                        <!-- Description -->
-
-                        <p class="my-task-description">
-
-                            <% if (task.description.length > 120) { %>
-
-                                <%= task.description.substring(0, 120) %>...
-
-                            <% } else { %>
-
-                                <%= task.description %>
-
-                            <% } %>
-
-                        </p>
-
-
-                        <!-- Task Information -->
-
-                        <div class="my-task-info">
-
-                            <div>
-
-                                <span>
-                                    Budget
-                                </span>
-
-                                <strong>
-                                    ₹<%= task.budget %>
-                                </strong>
+                                <% } %>
 
                             </div>
 
 
-                            <div>
+                            <!-- Title -->
 
-                                <span>
-                                    Deadline
-                                </span>
+                            <h2 class="modern-task-title">
+                                <%= task.title %>
+                            </h2>
 
-                                <strong>
-                                    <%= new Date(task.deadline).toLocaleDateString() %>
-                                </strong>
+
+                            <!-- Description -->
+
+                            <p class="modern-task-description">
+
+                                <%= task.description.length > 130
+                                    ? task.description.substring(0, 130) + "..."
+                                    : task.description
+                                %>
+
+                            </p>
+
+
+                            <!-- Details -->
+
+                            <div class="modern-task-details">
+
+                                <div class="detail-item">
+
+                                    <span>Budget</span>
+
+                                    <strong>
+                                        ₹<%= task.budget %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <span>Deadline</span>
+
+                                    <strong>
+                                        <%= new Date(task.deadline).toLocaleDateString() %>
+                                    </strong>
+
+                                </div>
 
                             </div>
 
-                        </div>
 
+                            <!-- Buttons -->
 
-                        <!-- Actions -->
+                            <div class="modern-task-actions">
 
-                        <div class="task-actions">
-
-                            <a
-                                href="/tasks/<%= task._id %>"
-                                class="view-btn"
-                            >
-                                View
-                            </a>
-
-
-                            <a
-                                href="/tasks/<%= task._id %>/edit"
-                                class="edit-btn"
-                            >
-                                Edit
-                            </a>
-
-
-                            <form
-                                action="/tasks/<%= task._id %>?_method=DELETE"
-                                method="POST"
-                            >
-
-                                <button
-                                    type="submit"
-                                    class="delete-btn"
+                                <a
+                                    href="/tasks/<%= task._id %>"
+                                    class="modern-view-btn"
                                 >
-                                    Delete
-                                </button>
+                                    View Task
+                                </a>
 
-                            </form>
+
+                                <a
+                                    href="/tasks/<%= task._id %>/edit"
+                                    class="modern-edit-btn"
+                                >
+                                    Edit
+                                </a>
+
+
+                                <form
+                                    action="/tasks/<%= task._id %>?_method=DELETE"
+                                    method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this task?');"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="modern-delete-btn"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
 
                         </div>
 
-                    </article>
+                    <% }) %>
 
-                <% }) %>
+                </div>
 
-            </section>
+            <% } %>
 
-        <% } %>
+        </div>
 
     </main>
 

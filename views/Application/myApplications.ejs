@@ -5,7 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>My Applications | CollegeFreelancing</title>
 
@@ -13,216 +16,284 @@
 
 </head>
 
+
 <body>
 
     <%- include("../partials/navbar") %>
 
 
-    <main class="applications-container">
+    <main class="applications-page">
 
-        <!-- Header -->
-
-        <section class="applications-header">
-
-            <p class="dashboard-label">
-                MY WORK
-            </p>
-
-            <h1>
-                My Applications 📝
-            </h1>
-
-            <p>
-                Track the tasks you have applied for.
-            </p>
-
-        </section>
+        <div class="applications-container">
 
 
-        <% if (applications.length === 0) { %>
+            <!-- Header -->
 
-            <!-- Empty -->
+            <div class="modern-page-header">
 
-            <section class="empty-applications">
+                <div>
 
-                <div class="empty-icon">
-                    📝
+                    <span class="page-label">
+                        MY WORK
+                    </span>
+
+                    <h1>
+                        My Applications
+                    </h1>
+
+                    <p>
+                        Track the tasks you have applied for.
+                    </p>
+
                 </div>
 
-                <h2>
-                    No Applications Yet
-                </h2>
-
-                <p>
-                    You haven't applied for any tasks yet.
-                </p>
-
-                <a href="/dashboard">
-                    Find Tasks →
-                </a>
-
-            </section>
+            </div>
 
 
-        <% } else { %>
+            <!-- Summary -->
+
+            <div class="application-summary">
+
+                <div class="application-summary-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Applications
+                    </span>
+
+                    <strong>
+                        <%= applications.length %>
+                    </strong>
+
+                </div>
+
+            </div>
 
 
-            <section class="applications-grid">
-
-                <% applications.forEach((application) => { %>
+            <% if (applications.length === 0) { %>
 
 
-                    <!-- Deleted Task -->
+                <!-- Empty -->
 
-                    <% if (!application.task) { %>
+                <div class="modern-empty">
 
-                        <div class="application-card deleted-application">
+                    <div class="empty-circle">
+                        💼
+                    </div>
 
-                            <div class="application-card-top">
+                    <h2>
+                        No Applications Yet
+                    </h2>
 
-                                <span class="deleted-badge">
-                                    Task Deleted
-                                </span>
+                    <p>
+                        You haven't applied for any tasks yet.
+                    </p>
 
-                            </div>
+                    <a
+                        href="/dashboard"
+                        class="primary-action"
+                    >
+                        Find Tasks
+                    </a>
 
-                            <h2>
-                                Task No Longer Available
-                            </h2>
-
-                            <p>
-                                The task associated with this application
-                                has been deleted.
-                            </p>
-
-                            <div class="deleted-message">
-                                This application can no longer be viewed.
-                            </div>
-
-                        </div>
+                </div>
 
 
-                    <% } else { %>
+            <% } else { %>
 
 
-                        <!-- Normal Application -->
+                <!-- Applications -->
 
-                        <div class="application-card">
-
-
-                            <!-- Top -->
-
-                            <div class="application-card-top">
-
-                                <span class="category">
-                                    <%= application.task.category %>
-                                </span>
+                <div class="modern-application-grid">
 
 
-                                <span class="application-status">
-
-                                    <%= application.status %>
-
-                                </span>
-
-                            </div>
+                    <% applications.forEach((application) => { %>
 
 
-                            <!-- Title -->
-
-                            <h2 class="application-title">
-
-                                <%= application.task.title %>
-
-                            </h2>
+                        <% if (application.task) { %>
 
 
-                            <!-- Description -->
-
-                            <p class="application-description">
-
-                                <%= application.task.description %>
-
-                            </p>
+                            <div class="modern-application-card">
 
 
-                            <!-- Details -->
+                                <!-- Top -->
 
-                            <div class="application-details">
+                                <div class="modern-card-top">
 
-
-                                <div>
-
-                                    <span>
-                                        Your Bid
+                                    <span class="category-badge">
+                                        <%= application.task.category %>
                                     </span>
 
-                                    <strong>
-                                        ₹<%= application.bidAmount %>
-                                    </strong>
+
+                                    <% if (application.status === "Pending") { %>
+
+                                        <span class="application-status status-pending">
+                                            ● Pending
+                                        </span>
+
+                                    <% } else if (application.status === "Accepted") { %>
+
+                                        <span class="application-status status-accepted">
+                                            ● Accepted
+                                        </span>
+
+                                    <% } else if (application.status === "Rejected") { %>
+
+                                        <span class="application-status status-rejected">
+                                            ● Rejected
+                                        </span>
+
+                                    <% } else { %>
+
+                                        <span class="application-status">
+                                            ● <%= application.status %>
+                                        </span>
+
+                                    <% } %>
 
                                 </div>
 
 
-                                <div>
+                                <!-- Title -->
 
-                                    <span>
-                                        Completion Time
-                                    </span>
+                                <h2 class="modern-application-title">
 
-                                    <strong>
-                                        <%= application.completionTime %>
-                                    </strong>
+                                    <%= application.task.title %>
+
+                                </h2>
+
+
+                                <!-- Description -->
+
+                                <p class="modern-application-description">
+
+                                    <%= application.task.description.length > 120
+                                        ? application.task.description.substring(0, 120) + "..."
+                                        : application.task.description
+                                    %>
+
+                                </p>
+
+
+                                <!-- Details -->
+
+                                <div class="modern-application-details">
+
+
+                                    <div>
+
+                                        <span>
+                                            Your Bid
+                                        </span>
+
+                                        <strong>
+                                            ₹<%= application.bidAmount %>
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <span>
+                                            Completion Time
+                                        </span>
+
+                                        <strong>
+                                            <%= application.completionTime %>
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <span>
+                                            Task Budget
+                                        </span>
+
+                                        <strong>
+                                            ₹<%= application.task.budget %>
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <span>
+                                            Deadline
+                                        </span>
+
+                                        <strong>
+                                            <%= new Date(application.task.deadline).toLocaleDateString() %>
+                                        </strong>
+
+                                    </div>
+
 
                                 </div>
 
 
-                            </div>
+                                <!-- Message -->
+
+                                <div class="application-message-box">
+
+                                    <span>
+                                        Your Proposal
+                                    </span>
+
+                                    <p>
+                                        <%= application.message %>
+                                    </p>
+
+                                </div>
 
 
-                            <!-- Actions -->
+                                <!-- Buttons -->
 
-                            <div class="application-actions">
+                                <div class="modern-application-actions">
 
-                                <a
-                                    href="/tasks/<%= application.task._id %>"
-                                    class="view-application-btn"
-                                >
-                                    View Task →
-                                </a>
-
-
-                                <% if (application.status === "Accepted") { %>
 
                                     <a
-                                        href="/tasks/<%= application.task._id %>/submit"
-                                        class="submit-work-btn"
+                                        href="/tasks/<%= application.task._id %>"
+                                        class="modern-secondary-btn"
                                     >
-                                        Submit Work
+                                        View Task
                                     </a>
 
-                                <% } %>
 
+                                    <% if (application.status === "Accepted") { %>
+
+                                        <a
+                                            href="/tasks/<%= application.task._id %>/submit"
+                                            class="modern-primary-btn"
+                                        >
+                                            Submit Work
+                                        </a>
+
+                                    <% } %>
+
+
+                                    </div>
 
                             </div>
 
+                        <% } %>
 
-                        </div>
+                    <% }) %>
 
+                </div>
 
-                    <% } %>
+            <% } %>
 
-
-                <% }) %>
-
-            </section>
-
-
-        <% } %>
-
+            </div>
 
     </main>
-
+    
 </body>
 
 </html>

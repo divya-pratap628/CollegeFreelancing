@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -12,7 +14,6 @@ const Notification = require("./models/notification");
 const session = require("express-session");
 const app = express();
 
-require("dotenv").config();
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -54,6 +55,61 @@ app.get("/login", (req,res) => {
     res.render("users/login");
 });
 
+app.post("/register", async (req, res) => {
+
+    console.log("🔥 REGISTER ROUTE CALLED");
+
+    try {
+
+        const {
+            name,
+            email,
+            password,
+            collage,
+            role
+        } = req.body;
+
+        console.log("FORM DATA:", req.body);
+
+        if (role === "Admin") {
+            return res.render("users/adminDenied");
+        }
+
+        const existingUser = await User.findOne({
+            email: email
+        });
+
+        if (existingUser) {
+            return res.send(`
+                <h2>Email already registered</h2>
+                <a href="/login">Go to Login</a>
+            `);
+        }
+
+        const user = new User({
+            name: name,
+            email: email,
+            password: password,
+            collage: collage,
+            role: role
+        });
+
+        await user.save();
+
+        console.log("✅ USER SAVED");
+
+        res.redirect("/login");
+
+    } catch (err) {
+
+        console.log("❌ REGISTER ERROR:");
+        console.log(err);
+
+        res.status(500).send("Internal Server Error");
+    }
+
+});
+
 //logout 
 app.get("/logout", (req, res) => {
 
@@ -71,15 +127,36 @@ app.get("/logout", (req, res) => {
 
 // dashboard page
 app.get("/dashboard", async (req, res) => {
-    if(!req.session.userId) {
-        res.redirect("/login");
+
+    try {
+
+        if (!req.session.userId) {
+            return res.redirect("/login");
+        }
+
+        const tasks = await Task.find();
+
+        const user = await User.findById(
+            req.session.userId
+        );
+
+        if (!user) {
+            req.session.destroy(() => {});
+            return res.redirect("/login");
+        }
+
+        res.render("dashboard/index", {
+            tasks,
+            user
+        });
+
+    } catch (err) {
+
+        console.log("DASHBOARD ERROR:", err);
+
+        res.status(500).send("Internal Server Error");
+
     }
-    const tasks = await Task.find();
-    const user = await User.findById(req.session.userId)
-    res.render("dashboard/index", {
-        tasks,
-        user
-    });
 
 });
 
@@ -88,53 +165,55 @@ app.get("/postTask", (req,res) =>{
     res.render("tasks/postTask");
 });
 
-app.post("/register", async (req, res) => {
-    const {name, email, password, collage , role} = req.body;
+app.post("/login", async (req, res) => {
 
-    if(role == "Admin") {
-        return res.render("users/adminDenied");
-    }
-    
-    const user = new User ({
-        name,
-        email,
-        password,
-        collage, 
-        role
-    });
-    await user.save();
-    res.redirect("/login");
+    try {
 
-});
+        const {
+            email,
+            password
+        } = req.body;
 
-app.post("/login", async(req,res)=>{
+        const user = await User.findOne({
+            email: email
+        });
 
-    const {email,password}=req.body;
-
-    const user=await User.findOne({email});
-
-    if(!user){
-        return res.send("User not found");
-    }
-
-    if(user.password!==password){
-        return res.send("Incorrect Password");
-    }
-
-    req.session.userId=user._id;
-    req.session.userName=user.name;
-
-    req.session.save((err)=>{
-
-        if(err){
-            return res.send("Session Error");
+        if (!user) {
+            return res.send("User not found");
         }
 
-        res.redirect("/dashboard");
+        if (user.password !== password) {
+            return res.send("Incorrect Password");
+        }
 
-    });
+        req.session.userId = user._id;
+
+        req.session.userName = user.name;
+
+        req.session.save((err) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.send("Session Error");
+            }
+
+            res.redirect("/dashboard");
+
+        });
+
+    } catch (err) {
+
+        console.log("LOGIN ERROR:", err);
+
+        res.status(500).send(
+            "Internal Server Error"
+        );
+
+    }
 
 });
+
 
 app.post("/postTask", async (req, res) => {
 
@@ -216,17 +295,32 @@ app.get("/myTasks", async (req, res) => {
 //my application
 app.get("/myApplications", async (req, res) => {
 
-    if (!req.session.userId) {
-        return res.redirect("/login");
+    try {
+
+        if (!req.session.userId) {
+            return res.redirect("/login");
+        }
+
+        const applications = await Application.find({
+            worker: req.session.userId
+        }).populate("task");
+
+        // Remove applications whose task was deleted
+        const validApplications = applications.filter(
+            application => application.task !== null
+        );
+
+        res.render("application/myApplications", {
+            applications: validApplications
+        });
+
+    } catch (err) {
+
+        console.log("MY APPLICATIONS ERROR:", err);
+
+        res.status(500).send("Internal Server Error");
+
     }
-
-    const applications = await Application.find({
-        worker: req.session.userId
-    }).populate("task");
-
-    res.render("application/myApplications", {
-        applications
-    });
 
 });
 
@@ -537,17 +631,40 @@ app.put("/tasks/:id", async (req, res) => {
 //delete taks
 app.delete("/tasks/:id", async (req, res) => {
 
-    const { id } = req.params;
+    try {
 
-    const task = await Task.findById(id);
+        if (!req.session.userId) {
+            return res.redirect("/login");
+        }
 
-    if (task.createdBy.toString() !== req.session.userId.toString()) {
-        return res.send("Access Denied");
+        const task = await Task.findById(req.params.id);
+
+        if (!task) {
+            return res.send("Task not found");
+        }
+
+        if (task.createdBy.toString() !== req.session.userId.toString()) {
+            return res.send("Access Denied");
+        }
+
+        await Application.deleteMany({
+            task: req.params.id
+        });
+
+        await Notification.deleteMany({
+            task: req.params.id
+        });
+
+        await Task.findByIdAndDelete(req.params.id);
+
+        res.redirect("/dashboard");
+
+    } catch (err) {
+
+        console.log("DELETE TASK ERROR:", err);
+
+        res.status(500).send("Internal Server Error");
     }
-
-    await Task.findByIdAndDelete(id);
-
-    res.redirect("/dashboard");
 });
 
 // Open Chat Page

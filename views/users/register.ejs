@@ -1,39 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Register</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | CollegeFreelancing</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
-<body>
-    <h1>Register</h1>
 
-    <form action="/register" method="POST">
+<body class="auth-page">
 
-        <input type="text" name="name" placeholder="Enter your name" required>
+    <div class="register-wrapper">
 
-        <br><br>
+        <!-- Left Side -->
 
-        <input type="email" name="email" placeholder="Enter your email" required>
+        <div class="register-info">
 
-        <br><br>
+            <div class="brand">
+                College<span>Freelancing</span>
+            </div>
 
-        <input type="password" name="password" placeholder="Enter password" required>
+            <div class="info-content">
 
-        <br><br>
+                <span class="info-label">
+                    STUDENT FREELANCING PLATFORM
+                </span>
 
-        <input type="text" name="collage" placeholder="Enter collage name" required>
+                <h1>
+                    Turn your skills into
+                    <span>opportunities.</span>
+                </h1>
 
-        <br><br>
+                <p>
+                    Connect with students, work on real
+                    college projects and earn while building
+                    your skills.
+                </p>
 
-         <select name="role">
-            <option value="Client">Client</option>
-            <option value="Worker">Worker</option>
-             <option value="Admin">Admin</option>
-        </select>
+                <div class="feature-list">
 
-        <br><br>
+                    <div class="feature">
+                        <div class="feature-icon">💼</div>
 
-        <button type="submit">Register</button>
+                        <div>
+                            <strong>
+                                Find Opportunities
+                            </strong>
 
-    </form>
+                            <p>
+                                Discover tasks posted by students.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="feature">
+                        <div class="feature-icon">💰</div>
+
+                        <div>
+                            <strong>
+                                Earn From Your Skills
+                            </strong>
+
+                            <p>
+                                Get paid for completing tasks.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="feature">
+                        <div class="feature-icon">🚀</div>
+
+                        <div>
+                            <strong>
+                                Build Your Experience
+                            </strong>
+
+                            <p>
+                                Work on practical college projects.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Right Side -->
+
+        <div class="register-form-section">
+
+            <div class="register-card">
+
+                <div class="form-header">
+
+                    <div class="mobile-brand">
+                        College<span>Freelancing</span>
+                    </div>
+
+                    <h2>
+                        Create your account
+                    </h2>
+
+                    <p>
+                        Join CollegeFreelancing today.
+                    </p>
+
+                </div>
+
+
+                <form action="/register"
+                      method="POST"
+                      class="modern-register-form">
+
+
+                    <!-- Name -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword()"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                        <small>
+                            Use at least 6 characters.
+                        </small>
+
+                    </div>
+
+
+                    <!-- College -->
+
+                    <div class="form-group">
+
+                        <label for="collage">
+                            College
+                        </label>
+
+                        <input
+                            type="text"
+                            id="collage"
+                            name="collage"
+                            placeholder="Enter your college"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Role -->
+
+                    <div class="form-group">
+
+                        <label for="role">
+                            I want to
+                        </label>
+
+                        <select
+                            id="role"
+                            name="role"
+                            required
+                        >
+
+                            <option value="" disabled selected>
+                                Select your role
+                            </option>
+
+                            <option value="Client">
+                                Post Tasks
+                            </option>
+
+                            <option value="Worker">
+                                Work & Earn
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Terms -->
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            required
+                        >
+
+                        <span>
+                            I agree to the
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+                        </span>
+
+                    </label>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="register-submit"
+                    >
+                        Create Account
+                        <span>→</span>
+                    </button>
+
+
+                </form>
+
+
+                <!-- Login -->
+
+                <div class="login-link">
+
+                    Already have an account?
+
+                    <a href="/login">
+                        Login
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.querySelector(".password-toggle");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = "🙈";
+
+            } else {
+
+                password.type = "password";
+
+                button.textContent = "👁";
+
+            }
+
+        }
+
+    </script>
+
 </body>
+
 </html>

@@ -5,7 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Notifications | CollegeFreelancing</title>
 
@@ -13,175 +16,197 @@
 
 </head>
 
+
 <body>
 
-    <!-- Navbar -->
     <%- include("../partials/navbar") %>
 
 
-    <main class="notifications-container">
+    <main class="notifications-page">
 
-        <!-- Page Header -->
+        <div class="notifications-container">
 
-        <section class="page-header">
 
-            <div>
+            <!-- Header -->
 
-                <p class="small-title">
-                    UPDATES
-                </p>
+            <div class="modern-page-header">
 
-                <h1>
-                    Notifications 🔔
-                </h1>
+                <div>
 
-                <p>
-                    Stay updated with your tasks and applications.
-                </p>
+                    <span class="page-label">
+                        UPDATES
+                    </span>
+
+                    <h1>
+                        Notifications
+                    </h1>
+
+                    <p>
+                        Stay updated with your latest activity.
+                    </p>
+
+                </div>
 
             </div>
 
-        </section>
+
+            <% if (notifications.length === 0) { %>
 
 
-        <!-- Notifications -->
+                <!-- Empty -->
 
-        <% if (notifications.length === 0) { %>
+                <div class="modern-empty">
 
-            <section class="empty-state">
+                    <div class="empty-circle">
+                        🔔
+                    </div>
 
-                <div class="empty-icon">
-                    🔔
+                    <h2>
+                        No Notifications
+                    </h2>
+
+                    <p>
+                        You're all caught up!
+                    </p>
+
+                    <a
+                        href="/dashboard"
+                        class="primary-action"
+                    >
+                        Back to Dashboard
+                    </a>
+
                 </div>
 
-                <h2>
-                    No Notifications Yet
-                </h2>
 
-                <p>
-                    You're all caught up!
-                </p>
-
-            </section>
+            <% } else { %>
 
 
-        <% } else { %>
+                <div class="modern-notification-list">
 
 
-            <section class="notification-list">
-
-                <% notifications.forEach((notification) => { %>
-
-                    <article class="notification-card
-                        <%= notification.isRead ? 'read' : 'unread' %>"
-                    >
-
-                        <!-- Icon -->
-
-                        <div class="notification-icon">
-
-                            <% if (notification.isRead) { %>
-
-                                ✓
-
-                            <% } else { %>
-
-                                🔔
-
-                            <% } %>
-
-                        </div>
+                    <% notifications.forEach((notification) => { %>
 
 
-                        <!-- Content -->
+                        <div
+                            class="modern-notification-card
+                            <%= notification.isRead ? 'notification-read' : 'notification-unread' %>"
+                        >
 
-                        <div class="notification-content">
 
-                            <div class="notification-header">
+                            <!-- Icon -->
 
-                                <h2>
-                                    Notification
-                                </h2>
-
+                            <div class="modern-notification-icon">
 
                                 <% if (notification.isRead) { %>
-
-                                    <span class="notification-status read-status">
-                                        Read
-                                    </span>
-
+                                    ✓
                                 <% } else { %>
-
-                                    <span class="notification-status unread-status">
-                                        New
-                                    </span>
-
+                                    🔔
                                 <% } %>
 
                             </div>
 
 
-                            <p class="notification-message">
-                                <%= notification.message %>
-                            </p>
+                            <!-- Content -->
+
+                            <div class="modern-notification-content">
 
 
-                            <div class="notification-footer">
+                                <div class="notification-top-row">
 
-                                <span class="notification-date">
+                                    <div>
 
-                                    <% if (notification.createdAt) { %>
+                                        <span class="notification-label">
+                                            COLLEGEFREELANCING
+                                        </span>
 
-                                        📅
-                                        <%= new Date(notification.createdAt).toLocaleDateString() %>
+                                        <h2>
+                                            New Update
+                                        </h2>
+
+                                    </div>
+
+
+                                    <% if (notification.isRead) { %>
+
+                                        <span class="notification-read-badge">
+                                            Read
+                                        </span>
 
                                     <% } else { %>
 
-                                        📅 No Date
+                                        <span class="notification-unread-badge">
+                                            New
+                                        </span>
 
                                     <% } %>
 
-                                </span>
+                                </div>
 
 
-                                <% if (notification.task) { %>
+                                <!-- Message -->
 
-                                    <a
-                                        href="/tasks/<%= notification.task %>/submissions"
-                                        class="notification-btn"
-                                    >
-                                        View Submission →
-                                    </a>
+                                <p class="modern-notification-message">
 
-                                <% } %>
+                                    <%= notification.message %>
+
+                                </p>
+
+
+                                <!-- Footer -->
+
+                                <div class="modern-notification-footer">
+
+
+                                    <span class="modern-notification-date">
+
+                                        <% if (notification.createdAt) { %>
+
+                                            <%= new Date(notification.createdAt).toLocaleString() %>
+
+                                        <% } else { %>
+
+                                            Recently
+
+                                        <% } %>
+
+                                    </span>
+
+
+                                    <% if (notification.task) { %>
+
+                                        <a
+                                            href="/tasks/<%= notification.task %>"
+                                            class="notification-view-btn"
+                                        >
+                                            View Task →
+                                        </a>
+
+                                    <% } %>
+
+
+                                </div>
+
 
                             </div>
 
+
                         </div>
 
-                    </article>
 
-                <% }) %>
-
-            </section>
-
-        <% } %>
+                    <% }) %>
 
 
-        <!-- Back -->
+                </div>
 
-        <div class="notification-back">
 
-            <a
-                href="/dashboard"
-                class="secondary-btn"
-            >
-                ← Back to Dashboard
-            </a>
+            <% } %>
+
 
         </div>
 
     </main>
+
 
 </body>
 
